@@ -22,6 +22,21 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+    books.forEach((b)=>{
+        const imageData = Buffer.from(b.image.data).toString('base64'); //It converts the image to base64
+        b.imageData = imageData; //It saves the image in the object
+    })
+    res.render('books',  {books});
+});
+
+router.get('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    books.splice(id, 1);
+    fs.writeFileSync('data/books.json', JSON.stringify(books));
+    res.redirect('/books');
+});
+
 
 
 module.exports = router;

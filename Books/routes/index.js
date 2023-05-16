@@ -12,9 +12,7 @@ router.get('/add', (req, res) => {
     res.render('addbooks');
 });
 
-router.get('/books', (req, res) => {
-    res.render('books');
-});
+
 
 
 
